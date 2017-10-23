@@ -1,0 +1,90 @@
+html {
+	height: 100%;
+}
+
+@media(max-width: 575px) {
+
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	
+}
+
+@media (min-width: 1200px) {
+	.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /*max-width: 300px;*/
+    margin: auto;
+    width: 30rem
+}
+.left {
+	margin-left: 89px
+}
+}
+
+.navbar-light {
+	background: #1275FB !important;
+}
+
+.collapse.navbar-collapse ul li a.nav-link {
+	color: #fff;
+}
+
+.collapse.navbar-collapse ul li.active a.nav-link {
+	color: #fff;
+}
+.collapse.navbar-collapse ul li a.nav-link:hover {
+	color: #000;
+}
+.navbar.navbar-expand-lg.navbar-light.bg-light a.navbar-brand {
+	color: #fff;
+}
+.navbar.navbar-expand-lg.navbar-light.bg-light a.navbar-brand:hover {
+	color: #ccc;
+}
+a.navbar-brand {
+	border: 1px solid #ccc;
+	padding: 0.3rem;
+	border-radius: 0.2rem;
+}
+.nav-item:hover {
+	background: #F9F461;
+}
+.nav-item {
+	padding: 0 1rem;
+}
+.user {
+	text-align: center;
+}
+.pad {
+    text-align: center;
+}
+
+.active a {
+	color: #fff
+}
+a:hover {
+	text-decoration: none
+}
+.col-md-9 {
+	margin-top: 12px
+}
+.col-md-3 {
+	margin-top: 12px
+}
+/*.footer {
+	background: #1275FB;
+	color: #fff;
+	padding: 1rem 0;
+}
+.social ul li:hover {
+	color: #F9F461;
+}*/

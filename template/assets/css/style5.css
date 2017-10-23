@@ -1,0 +1,74 @@
+html {
+	height: 100%;
+}
+
+@media(max-width: 575px) {
+
+}
+@media (min-width: 576px) and (max-width: 767px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+	
+}
+@media (min-width: 1200px) {
+	
+}
+.navbar-light {
+	background: #1275FB !important;
+}
+
+.collapse.navbar-collapse ul li a.nav-link {
+	color: #fff;
+}
+
+.collapse.navbar-collapse ul li.active a.nav-link {
+	color: #fff;
+}
+.collapse.navbar-collapse ul li a.nav-link:hover {
+	color: #000;
+}
+.navbar.navbar-expand-lg.navbar-light.bg-light a.navbar-brand {
+	color: #fff;
+}
+.navbar.navbar-expand-lg.navbar-light.bg-light a.navbar-brand:hover {
+	color: #ccc;
+}
+a.navbar-brand {
+	border: 1px solid #ccc;
+	padding: 0.3rem;
+	border-radius: 0.2rem;
+}
+.nav-item:hover {
+	background: #F9F461;
+}
+.nav-item {
+	padding: 0 1rem;
+}
+.progress {
+	width: 6rem
+}
+.space {
+	padding-top: 1rem;
+}
+.btn.btn-primary.mb-4{
+	background-color: #ed292a;
+	border-color: #ed292a;
+}
+.space {
+	padding-top: 1rem;
+}
+.fa-plus { 
+	border:1px solid #1275FB;
+	border-radius: 80px;
+	padding:4px;
+	margin-top:-2px;
+	margin-right:0px;
+	color: #1275FB
+}
+.thick {
+    border-top: 15px solid #1275FB;
+}
