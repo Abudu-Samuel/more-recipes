@@ -19,15 +19,7 @@ html {
 }
 
 @media (min-width: 1200px) {
-	.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    /*max-width: 300px;*/
-    margin: auto;
-    width: 30rem
-}
-.left {
-	margin-left: 89px
-}
+
 }
 
 .navbar-light {
@@ -80,6 +72,15 @@ a:hover {
 .col-md-3 {
 	margin-top: 12px
 }
+	.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /*max-width: 300px;*/
+    margin: auto;
+   /* width: 30rem*/
+}
+/*.left {
+	margin-left: 89px
+}*/
 /*.footer {
 	background: #1275FB;
 	color: #fff;
@@ -88,3 +89,10 @@ a:hover {
 .social ul li:hover {
 	color: #F9F461;
 }*/
+.space {
+	padding-top: 20rem;
+}
+.middle {
+	display: block;
+	margin: auto;
+}
