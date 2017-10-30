@@ -100,3 +100,7 @@ div > .btn.btn-primary.mb-4 {
 	color: #f9f109;
 	font-weight: 900
 }
+.middle {
+	display: block;
+	margin: auto;
+}

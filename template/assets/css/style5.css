@@ -72,3 +72,7 @@ a.navbar-brand {
 .thick {
     border-top: 15px solid #1275FB;
 }
+.middle {
+	display: block;
+	margin: auto;
+}

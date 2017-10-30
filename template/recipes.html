@@ -23,7 +23,7 @@
   				</form>
   			</li>
 				<li class="nav-item active">
-					<a class="nav-link" href="dashboard.html">Dashboard <i class="fa fa-dashboard" aria-hidden="true"></i><span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="dashboard.html">Profile <i class="fa fa-user" aria-hidden="true"></i><span class="sr-only">(current)</span></a>
 				</li>
 <!-- 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="mydropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
@@ -48,10 +48,51 @@
 	</nav>
 </div><!-- container -->
 <div class="container">
-	<div class="text-center">
-		<h2 class="display-6">Welcome To More-Recipes!</h2>
-		<p class="lead">View our hand-picked recipes from all over the world</p>
-		<a class="btn btn-primary mb-3" href="addrecipes.html">Add New Recipe</a>
+	<div class="">
+		<h2 class="display-6 text-center">Welcome To More-Recipes!</h2>
+		<p class="lead text-center">View our hand-picked recipes from all over the world</p>
+<!-- 		<a class="btn btn-primary mb-3" href="addrecipes.html">Add New Recipe</a> -->
+<button type="button" class="btn btn-primary middle mb-3" data-toggle="modal" data-target="#myModal" data-whatever="">Add New Recipe</button>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">Add a new recipe</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="Name of Recipe" class="col-form-label text-left">Name of Recipe:</label>
+            <input type="text" class="form-control" id="Name of Recipe">
+          </div>
+          <div class="form-group">
+            <label for="Image url" class="col-form-label text-left">Image url:</label>
+            <input type="text" class="form-control" id="Image url">
+          </div>
+          <div class="form-group">
+            <label for="Recipe Ingredients" class="col-form-label">Recipe Ingredients:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+           <div class="form-group">
+            <label for="Recipe Directions" class="col-form-label">Recipe Directions:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary middle" data-dismiss="modal">Cancel</button>
+        <a role="button" href="recipes.html" class="btn btn-primary middle">Add</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 	</div><!-- text-center -->
 </div><!-- container -->
 <div class="container">
