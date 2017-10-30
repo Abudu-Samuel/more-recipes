@@ -36,7 +36,7 @@ class Recipe {
     });
     if (validate.valid) {
       recipes.push(recipe);
-      return res.status(200).json({
+      return res.status(201).json({
         feed: recipes[recipes.length - 1],
         message: 'success',
         error: false
