@@ -1,5 +1,5 @@
 import recipes from '../model/recipe';
-import validator from '../middleware/validator';
+import validator from '../validator/validator';
 /**
  * @class recipe
  */
