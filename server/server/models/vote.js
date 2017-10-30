@@ -1,14 +1,27 @@
-'use strict';
+
+
 module.exports = (sequelize, DataTypes) => {
-  var vote = sequelize.define('vote', {
-    upvote: DataTypes.INTEGER,
-    downvote: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
+  const vote = sequelize.define('vote', {
+    upvote: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    downvote: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
     }
   });
+  vote.associate = (models) => {
+    vote.belongsTo(models.recipe, {
+      foreignKey: 'recipeId',
+      onDelete: 'CASCADE'
+    });
+    vote.belongsTo(models.user, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    });
+  };
   return vote;
 };
