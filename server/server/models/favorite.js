@@ -1,13 +1,15 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
-  var favorite = sequelize.define('favorite', {
-    title: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
-  });
+
+module.exports = (sequelize) => {
+  const favorite = sequelize.define('favorite', {});
+  favorite.associate = (models) => {
+    favorite.belongsTo(models.recipe, {
+      foreignKey: 'recipeId',
+      onDelete: 'CASCADE'
+    });
+    favorite.belongsTo(models.user, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    });
+  };
   return favorite;
 };
