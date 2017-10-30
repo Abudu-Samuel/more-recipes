@@ -1,12 +1,8 @@
-'use strict';
+
 module.exports = (sequelize, DataTypes) => {
-  var review = sequelize.define('review', {
-    content: DataTypes.TEXT
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
+  const review = sequelize.define('review', {
+    content: {
+      type: DataTypes.TEXT
     }
   });
   return review;
