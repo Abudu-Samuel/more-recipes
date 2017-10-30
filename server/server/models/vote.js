@@ -13,5 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 0
     }
   });
+  vote.associate = (models) => {
+    vote.belongsTo(models.recipe, {
+      foreignKey: 'recipeId',
+      onDelete: 'CASCADE'
+    });
+    vote.belongsTo(models.user, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    });
+  };
   return vote;
 };
