@@ -1,13 +1,19 @@
-'use strict';
+
 module.exports = (sequelize, DataTypes) => {
-  var review = sequelize.define('review', {
-    content: DataTypes.TEXT
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
+  const review = sequelize.define('review', {
+    content: {
+      type: DataTypes.TEXT
     }
   });
+  review.associate = (models) => {
+    review.belongsTo(models.recipe, {
+      foreignKey: 'recipeId',
+      onDelete: 'CASCADE'
+    });
+    review.belongsTo(models.user, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    });
+  };
   return review;
 };
