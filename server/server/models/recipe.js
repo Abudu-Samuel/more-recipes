@@ -1,17 +1,32 @@
-'use strict';
+
+
 module.exports = (sequelize, DataTypes) => {
-  var recipe = sequelize.define('recipe', {
-    name: DataTypes.STRING,
-    imageurl: DataTypes.STRING,
-    ingredients: DataTypes.TEXT,
-    directions: DataTypes.TEXT,
-    description: DataTypes.TEXT
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
+  const recipe = sequelize.define('recipe', {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    imageurl: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    ingredients: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    directions: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false
     }
   });
+  recipe.associate = (models) => {
+    recipe.belongsTo(models.user, {
+      
+    })
+  }
   return recipe;
 };
