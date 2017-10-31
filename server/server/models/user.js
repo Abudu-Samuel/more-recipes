@@ -3,17 +3,28 @@ module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('user', {
     username: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      },
+      unique: true
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate: {
-        isEmail: true
+        isEmail: true,
+        notEmpty: {
+          msg: 'email cannot'
+        }
       }
     }
   });
