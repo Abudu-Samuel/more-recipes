@@ -16,4 +16,5 @@ export default (app) => {
   app.post('/api/users/signup', UserController.register);
   app.post('/api/users/signin', UserController.login);
   app.post('/api/recipes', RecipeController.addRecipe);
+  app.put('/api/recipes/:recipeId', RecipeController.modifyRecipe);
 };

@@ -5,9 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: {
-          msg: 'Cannot be empty'
-        }
+        notEmpty: true
       },
       unique: true
     },
@@ -15,9 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: {
-          msg: 'password cannt b'
-        }
+        notEmpty: true
       }
     },
     email: {
