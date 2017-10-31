@@ -11,9 +11,8 @@ class RecipeController {
    * @param {Object} res
    */
   static addRecipe(req, res) {
-    console.log('===============', req.body);
     const {
-      name, ingredients, description, directions, imageurl, userId
+      name, ingredients, description, directions, imageurl,
     } = req.body;
     return recipes
       .create({
@@ -22,7 +21,7 @@ class RecipeController {
         description,
         directions,
         imageurl,
-        userId
+        userId: req.userId
       })
       .then(addRecipe => res.status(201).send(addRecipe))
       .catch(error => res.status(400).send(error));
