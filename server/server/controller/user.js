@@ -79,7 +79,7 @@ class UserController {
         } else {
           const hashedPassword = bcrypt.compareSync(req.body.password, found.password);
           if (hashedPassword) {
-            const token = jwt.sign({ id: found.id }, 'Test', { expiresIn: 1440 });
+            const token = jwt.sign({ id: found.id }, 'Test');
             return res.status(200).send({
               messsage: 'login successful',
               token
