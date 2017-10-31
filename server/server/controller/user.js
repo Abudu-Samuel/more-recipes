@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+// import bcrypt from 'bcrypt';
 import db from '../models/';
 
 const users = db.user;
@@ -38,8 +38,11 @@ class UserController {
         }
       })
       .then((found) => {
-
+        res.status(200).send({
+          message: 'Login successful'
+        });
       })
+      .catch(error => res.status(400).send(error));
   }
 }
 

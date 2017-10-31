@@ -1,6 +1,7 @@
 // import Recipes from '../controller/recipe';
 // import recipes from '../model/recipe';
 import UserController from '../controller/user';
+import RecipeController from '../controller/recipe';
 // import recipeController from '../controllers/recipe';
 
 export default (app) => {
@@ -13,6 +14,6 @@ export default (app) => {
 
   //= ==================================================
   app.post('/api/users/signup', UserController.register);
-  // app.post('/api/users/signin', userController.login);
-  // app.post('/api/recipes', recipeController.addRecipe);
+  app.post('/api/users/signin', UserController.login);
+  app.post('/api/recipes', RecipeController.addRecipe);
 };
