@@ -36,20 +36,15 @@ class RecipeController {
       name, ingredients, description, directions, imageurl
     } = req.body;
     return recipes
-      .find({
-        where: {
-          id: req.params.recipeId,
-        }
-      })
-      .then((found) => {
-        if (!found) { 
+      .findById(parseInt(req.params.recipeId, 10))
+      .then((recipeFound) => {
+        console.log(recipeFound);
+        if (!recipeFound) {
           return res.status(404).send({
             message: 'Recipe not Found'
           });
-        } else if (found.userId != parseInt(req.body.userId, 10)) {
-          res.status(400).send('error');
         }
-        return recipes
+        return recipeFound
           .update({
             name,
             ingredients,
@@ -57,12 +52,33 @@ class RecipeController {
             directions,
             imageurl
           })
-          .then((updatedRecipe) => {
-            res.status(200).send(updatedRecipe);
-          })
+          .then(updatedRecipe => res.status(200).send(updatedRecipe))
           .catch(error => res.status(400).send(error));
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => console.log(error));
+  }
+  /**
+     * @returns {Object} removeRecipe
+     * @param {Object} req
+     * @param {Object} res
+     */
+  static removeRecipe(req, res) {
+    return recipes
+      .findById(parseInt(req.params.recipeId, 10))
+      .then((recipeFound) => {
+        if (!recipeFound) {
+          return res.status(404).send({
+            message: 'Recipe not Found'
+          });
+        }
+        return recipeFound
+          .destroy()
+          .then(() => res.status(200).send({
+            message: 'Recipe deleted'
+          }))
+          .catch(err => res.status(400).send(err));
+      })
+      .catch(err => res.status(400).send(err));
   }
 }
 

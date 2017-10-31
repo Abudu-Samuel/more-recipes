@@ -18,5 +18,6 @@ export default (app) => {
   app.post('/api/users/signup', UserController.register);
   app.post('/api/users/signin', UserController.login);
   app.post('/api/recipes', testMiddleware, secondMidd, RecipeController.addRecipe);
-  app.put('/api/recipes/:recipeId', RecipeController.modifyRecipe);
+  app.put('/api/recipes/:recipeId', testMiddleware, secondMidd, RecipeController.modifyRecipe);
+  app.delete('/api/recipes/:recipeId', testMiddleware, secondMidd, RecipeController.removeRecipe);
 };

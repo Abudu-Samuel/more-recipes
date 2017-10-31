@@ -1,5 +1,10 @@
 import jwt from 'jsonwebtoken';
-
+/**
+ * @returns {Object} ensureUser
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ */
 const ensureUser = (req, res, next) => {
   let verified;
   try {
@@ -10,10 +15,9 @@ const ensureUser = (req, res, next) => {
   }
   if (!verified.id) {
     return res.status(403).send({ message: 'Incorrect user.' });
-  } 
-    req.userId = verified.id;
-    return next();
-  
+  }
+  req.userId = verified.id;
+  return next();
 };
 
 export default ensureUser;
