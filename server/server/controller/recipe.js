@@ -1,6 +1,7 @@
 import db from '../models/';
 
 const recipes = db.recipe;
+const reviews = db.review;
 /**
  *@class RecipeController
  */
@@ -27,10 +28,12 @@ class RecipeController {
       .catch(error => res.status(400).send(error));
   }
   /**
-     * @returns {Object} modifyRecipy
-     * @param {Object} req
-     * @param {Object} res
-     */
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {json} modifies the recipe
+   * @memberof RecipeController
+   */
   static modifyRecipe(req, res) {
     const {
       name, ingredients, description, directions, imageurl
@@ -81,14 +84,46 @@ class RecipeController {
       .catch(err => res.status(400).send(err));
   }
   /**
-     * @returns {Object} getAll
-     * @param {*} req
-     * @param {*} res
-     */
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {json} get al recipes
+   * @memberof RecipeController
+   */
   static getAll(req, res) {
     return recipes
       .all()
       .then(allrecipes => res.status(200).send(allrecipes))
+      .catch(error => res.status(400).send(error));
+  }
+  /**
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {Object} add reviews
+   * @memberof RecipeController
+   */
+  static addReview(req, res) {
+    return recipes
+      .findById(parseInt(req.params.recipeId, 10))
+      .then((recipeFound) => {
+        if (!recipeFound) {
+          return res.status(404).send({
+            message: 'Recipe not found'
+          });
+        }
+        return reviews
+          .create({
+            content: req.body.content,
+            recipeId: req.params.recipeId,
+            userId: req.userId,
+          })
+          .then(createdReview => res.status(201).send({
+            message: 'Review Added successfully',
+            data: createdReview
+          }))
+          .catch(error => res.status(400).send({message: error.message}));
+      })
       .catch(error => res.status(400).send(error));
   }
 }
