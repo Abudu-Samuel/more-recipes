@@ -122,7 +122,7 @@ class RecipeController {
             message: 'Review Added successfully',
             data: createdReview
           }))
-          .catch(error => res.status(400).send({message: error.message}));
+          .catch(error => res.status(400).send(error));
       })
       .catch(error => res.status(500).send(error));
   }

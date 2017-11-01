@@ -21,11 +21,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: true,
-        notEmpty: {
-          msg: 'email cannot'
+        isEmail: {
+          msg: 'Email already Exist'
         }
       }
+    },
+    firstName: {
+      type: DataTypes.STRING
+    },
+    lastName: {
+      type: DataTypes.STRING
     }
   });
   user.associate = (models) => {
