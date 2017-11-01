@@ -7,17 +7,6 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    content: {
-      type: Sequelize.TEXT
-    },
-    createdAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    },
     userId: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -37,7 +26,19 @@ module.exports = {
         key: 'id',
         as: 'recipeId'
       }
-    }
+    },
+    content: {
+      type: Sequelize.TEXT,
+      allowNull: false
+    },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
   }),
   down: queryInterface => queryInterface.dropTable('reviews')
 };
