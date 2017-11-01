@@ -80,6 +80,17 @@ class RecipeController {
       })
       .catch(err => res.status(400).send(err));
   }
+  /**
+     * @returns {Object} getAll
+     * @param {*} req
+     * @param {*} res
+     */
+  static getAll(req, res) {
+    return recipes
+      .all()
+      .then(allrecipes => res.status(200).send(allrecipes))
+      .catch(error => res.status(400).send(error));
+  }
 }
 
 export default RecipeController;

@@ -1,6 +1,7 @@
 html {
 	height: 100%;
 }
+
 .navbar-light {
 	background: #1275FB !important;
 }
@@ -22,36 +23,40 @@ html {
 	color: #ccc;
 }
 a.navbar-brand {
-	border: 1px solid #ccc;
+	/* border: 1px solid #ccc; */
 	padding: 0.3rem;
 	border-radius: 0.2rem;
 }
 .nav-item:hover {
-	background: #F9F461;
+	background: #ccc;
 }
 .nav-item {
 	padding: 0 1rem;
 }
 @media(max-width: 575px) {
-/*.loginBox {
-	margin-top: 80px;
-}*/
+.loginBox {
+	width: 300px;
+}
 }
 @media (min-width: 576px) and (max-width: 767px) {
-
+.loginBox {
+	width: 350px;
+}
 }
 @media (min-width: 768px) and (max-width: 991px) {
-/*	.loginBox {
-	margin-top: 200px;
-}*/
+.loginBox {
+	width: 600px;
+}
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-/*	.loginBox {
-	margin-top: 300px;
-}*/
+.loginBox {
+	width: 600px;
+}
 }
 @media (min-width: 1200px) {
-
+.loginBox {
+	width: 600px;
+}
 }
 
 .loginBox {
@@ -59,7 +64,7 @@ a.navbar-brand {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
-	width: 350px;
+	 /* width: 350px;  */
 	box-sizing: border-box;
 	background: transparent;
 	box-shadow: 0 10px 20px rgba(0,0,0,.5);
