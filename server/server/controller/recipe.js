@@ -81,7 +81,7 @@ class RecipeController {
           }))
           .catch(err => res.status(400).send(err));
       })
-      .catch(err => res.status(400).send(err));
+      .catch(err => res.status(500).send(err));
   }
   /**
    * @static
@@ -124,7 +124,7 @@ class RecipeController {
           }))
           .catch(error => res.status(400).send({message: error.message}));
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(500).send(error));
   }
 }
 
