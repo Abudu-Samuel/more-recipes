@@ -20,4 +20,5 @@ export default (app) => {
   app.post('/api/recipes', testMiddleware, secondMidd, RecipeController.addRecipe);
   app.put('/api/recipes/:recipeId', testMiddleware, secondMidd, RecipeController.modifyRecipe);
   app.delete('/api/recipes/:recipeId', testMiddleware, secondMidd, RecipeController.removeRecipe);
+  app.get('/api/recipes', testMiddleware, secondMidd, RecipeController.getAll);
 };
