@@ -3,6 +3,16 @@ module.exports = (sequelize, DataTypes) => {
   const review = sequelize.define('review', {
     content: {
       type: DataTypes.TEXT
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      onDelete: 'CASCADE',
+      references: {
+        model: 'users',
+        key: 'id',
+        as: 'userId'
+      }
     }
   });
   review.associate = (models) => {

@@ -20,6 +20,10 @@ module.exports = {
       type: Sequelize.TEXT,
       allowNull: false
     },
+    category: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
     directions: {
       type: Sequelize.TEXT,
       allowNull: false
@@ -27,6 +31,21 @@ module.exports = {
     description: {
       type: Sequelize.TEXT,
       allowNull: false
+    },
+    upVotes: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    downVotes: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    views: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      defaultValue: 0
     },
     createdAt: {
       allowNull: false,
