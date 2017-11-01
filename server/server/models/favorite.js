@@ -1,6 +1,27 @@
 
-module.exports = (sequelize) => {
-  const favorite = sequelize.define('favorite', {});
+module.exports = (sequelize, DataTypes) => {
+  const favorite = sequelize.define('favorite', {
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      onDelete: 'CASCADE',
+      references: {
+        model: 'users',
+        key: 'id',
+        as: 'userId'
+      }
+    },
+    recipeId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      onDelete: 'CASCADE',
+      references: {
+        model: 'recipes',
+        key: 'id',
+        as: 'recipeId'
+      }
+    }
+  });
   favorite.associate = (models) => {
     favorite.belongsTo(models.recipe, {
       foreignKey: 'recipeId',

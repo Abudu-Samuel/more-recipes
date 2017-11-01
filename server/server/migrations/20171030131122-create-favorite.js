@@ -8,17 +8,6 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    title: {
-      type: Sequelize.STRING
-    },
-    createdAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    },
     userId: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -38,7 +27,15 @@ module.exports = {
         key: 'id',
         as: 'recipeId'
       }
-    }
+    },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
   }),
   down: queryInterface => queryInterface.dropTable('favorites')
 };

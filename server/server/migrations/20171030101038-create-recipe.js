@@ -7,6 +7,16 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
+    userId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      onDelete: 'CASCADE',
+      references: {
+        model: 'users',
+        key: 'id',
+        as: 'userId'
+      }
+    },
     name: {
       type: Sequelize.STRING,
       allowNull: false
@@ -55,16 +65,6 @@ module.exports = {
       allowNull: false,
       type: Sequelize.DATE
     },
-    userId: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'users',
-        key: 'id',
-        as: 'userId'
-      }
-    }
   }),
   down: queryInterface => queryInterface.dropTable('recipes')
 };
