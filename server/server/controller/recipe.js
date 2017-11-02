@@ -14,7 +14,7 @@ class RecipeController {
   static addRecipe(req, res) {
     const errors = [];
     const {
-      name, ingredients, description, category, directions, imageurl,
+      name, ingredients, upVotes, description, category, directions, imageurl,
     } = req.body;
     if (!name || typeof name !== 'string') {
       errors.push('Name of recipe is required');
@@ -47,6 +47,7 @@ class RecipeController {
         description,
         category,
         directions,
+        upVotes,
         imageurl,
         userId: req.userId
       })
@@ -127,6 +128,18 @@ class RecipeController {
    * @memberof RecipeController
    */
   static getAll(req, res) {
+    if (req.query.order || req.query.sort) {
+      return recipes
+        .findAll({
+          order: [
+            ['upVotes', 'DESC']
+          ]
+        })
+        .then(sortedRecipes => res.status(200).send(sortedRecipes))
+        .catch(() => res.status(400).send({
+          message: 'Error Occured'
+        }));
+    }
     return recipes
       .all()
       .then(allrecipes => res.status(200).send(allrecipes))
@@ -169,17 +182,6 @@ class RecipeController {
    * @returns {Object} getHighVote
    * @memberof RecipeController
    */
-  static getHighVote(req, res) {
-    if (req.query.order || req.query.sort) {
-      return recipes
-        .findAll({
-          order: [
-            ['upVotes', 'DESC']
-          ]
-        })
-        
-    }
-  }
 }
 
 export default RecipeController;
