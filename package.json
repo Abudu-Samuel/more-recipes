@@ -8,7 +8,7 @@
     "test": "mocha --compilers js:babel-core/register server/server/test/test.js --timeout 10000",
     "coverage": "nyc report --reporter=lcov | coveralls",
     "build": "./node_modules/.bin/babel server/ -d dist --copy-files",
-    "start": "cross-env NODE_ENV=production node dist/server/bin/www.js",
+    "start": "npm run build && cross-env NODE_ENV=production node dist/server/bin/www.js",
     "postinstall": "npm run build"
   },
   "author": "samuelAbudu",
