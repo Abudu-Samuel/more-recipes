@@ -162,6 +162,24 @@ class RecipeController {
       })
       .catch(error => res.status(500).send(error));
   }
+  /**
+   * @static
+   * @param {Object} req
+   * @param {anObjecty} res
+   * @returns {Object} getHighVote
+   * @memberof RecipeController
+   */
+  static getHighVote(req, res) {
+    if (req.query.order || req.query.sort) {
+      return recipes
+        .findAll({
+          order: [
+            ['upVotes', 'DESC']
+          ]
+        })
+        
+    }
+  }
 }
 
 export default RecipeController;
