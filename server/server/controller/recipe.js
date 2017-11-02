@@ -25,7 +25,12 @@ class RecipeController {
         userId: req.userId
       })
       .then(addRecipe => res.status(201).send(addRecipe))
-      .catch(error => res.status(400).send(error));
+      .catch((error) => {
+        console.log(error);
+        return res.status(500).send({
+          message: 'Some error occured'
+        });
+      });
   }
   /**
    * @static

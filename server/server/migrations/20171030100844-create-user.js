@@ -16,11 +16,11 @@ module.exports = {
     username: {
       type: Sequelize.STRING,
       allowNull: false,
-      // validate: {
-      //   notEmpty: {
-      //     msg: 'Cannot be empty'
-      //   }
-      // },
+      validate: {
+        notEmpty: {
+          msg: 'Cannot be empty'
+        }
+      },
     },
     password: {
       type: Sequelize.STRING,
@@ -34,11 +34,11 @@ module.exports = {
     email: {
       type: Sequelize.STRING,
       allowNull: false,
-      // unique: true,
-      // validate: {
-      //   isEmail: true,
-      //   notEmpty: true,
-      // }
+      unique: true,
+      validate: {
+        isEmail: true,
+        notEmpty: true,
+      }
     },
     createdAt: {
       allowNull: false,

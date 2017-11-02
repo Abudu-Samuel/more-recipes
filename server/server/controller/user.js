@@ -14,7 +14,9 @@ class UserController {
    */
   static register(req, res) {
     const errors = [];
-    const { username, email, password } = req.body;
+    const {
+      username, email, password, firstName, lastName
+    } = req.body;
 
     if (!username) {
       errors.push('Username is required');
@@ -25,6 +27,12 @@ class UserController {
     if (!password) {
       errors.push('password is required');
     }
+    if (!firstName) {
+      errors.push('first name is required');
+    }
+    if (!lastName) {
+      errors.push('last name is required');
+    }
     if (errors.length > 0) {
       return res.status(400).send({
         message: errors
@@ -33,13 +41,18 @@ class UserController {
     return users
       .create({
         username,
+        firstName,
+        lastName,
         password: bcrypt.hashSync(req.body.password, 10),
         email
       })
-      .then(register => res.status(201).send(register))
+      .then(register => res.status(201).send({
+        message: 'Signup successful',
+        register
+      }))
       .catch((error) => {
         if (error.name === 'SequelizeUniqueConstraintError') {
-          res.status(400).send({
+          return res.status(400).send({
             message: 'Email already Exists!!!'
           });
         }
@@ -82,7 +95,7 @@ class UserController {
             const token = jwt.sign({ id: found.id }, 'Test');
             return res.status(200).send({
               messsage: 'login successful',
-              token
+              Token: token
             });
           }
           res.status(400).send({
@@ -90,8 +103,8 @@ class UserController {
           });
         }
       })
-      .catch(error => res.status(400).send({
-        message: 'Cannot create an account, try again'
+      .catch(() => res.status(400).send({
+        message: 'Some error occured'
       }));
   }
 }
