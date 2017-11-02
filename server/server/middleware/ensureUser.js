@@ -9,8 +9,8 @@ const ensureUser = (req, res, next) => {
   let verified;
   try {
     verified = jwt.verify(req.token, 'Test');
-  } catch (e) {
-    const err = res.status(400).send({ e });
+  } catch (error) {
+    const err = res.status(400).send({ error });
     return next(err);
   }
   if (!verified.id) {

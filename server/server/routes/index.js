@@ -6,7 +6,6 @@ import validate from '../middleware/validator';
 // import recipeController from '../controllers/recipe';
 
 export default (app) => {
-  //= ==================================================
   app.post('/api/users/signup', UserController.register);
   app.post('/api/users/signin', UserController.login);
   app.post('/api/recipes', testMiddleware, secondMidd, RecipeController.addRecipe);
