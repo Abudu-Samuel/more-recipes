@@ -7,20 +7,6 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    upvote: {
-      type: Sequelize.INTEGER
-    },
-    downvote: {
-      type: Sequelize.INTEGER
-    },
-    createdAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    },
     userId: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -40,7 +26,21 @@ module.exports = {
         key: 'id',
         as: 'recipeId'
       }
-    }
+    },
+    upvotes: {
+      type: Sequelize.INTEGER
+    },
+    downvotes: {
+      type: Sequelize.INTEGER
+    },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
   }),
   down: queryInterface => queryInterface.dropTable('votes')
 };

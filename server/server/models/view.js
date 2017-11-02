@@ -4,6 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     recipeId: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    views: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
   view.associate = (models) => {
