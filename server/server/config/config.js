@@ -1,11 +1,11 @@
-import dotevn from 'dotenv';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 module.exports = {
   development: {
     username: process.env.DATABASE_DEV,
-    password: process.env.DATABASE_DEV_KEY,
+    password: process.env.DATABASE_DEVKEY,
     database: process.env.DATABASE_DB,
     host: '127.0.0.1',
     dialect: 'postgres'

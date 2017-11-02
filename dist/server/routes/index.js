@@ -29,7 +29,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // import recipeController from '../controllers/recipe';
 
 exports.default = function (app) {
-  //= ==================================================
   app.post('/api/users/signup', _user2.default.register);
   app.post('/api/users/signin', _user2.default.login);
   app.post('/api/recipes', _token2.default, _ensureUser2.default, _recipe2.default.addRecipe);

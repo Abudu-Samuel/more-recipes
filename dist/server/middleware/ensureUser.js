@@ -20,8 +20,8 @@ var ensureUser = function ensureUser(req, res, next) {
   var verified = void 0;
   try {
     verified = _jsonwebtoken2.default.verify(req.token, 'Test');
-  } catch (e) {
-    var err = res.status(400).send({ e: e });
+  } catch (error) {
+    var err = res.status(400).send({ error: error });
     return next(err);
   }
   if (!verified.id) {
