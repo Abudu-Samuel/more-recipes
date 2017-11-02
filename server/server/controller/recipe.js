@@ -1,157 +1,191 @@
-import recipes from '../model/recipe';
-import validator from '../validator/validator';
+import db from '../models/';
+
+const recipes = db.recipe;
+const reviews = db.review;
 /**
- * @class recipe
+ *@class RecipeController
  */
-class Recipe {
+class RecipeController {
   /**
-   * @returns {Object} recipes
-   * @param {*} req
-   * @param {*} res
+   * @returns {Object} addRecipe
+   * @param {Object} req
+   * @param {Object} res
    */
-  static getRecipe(req, res) {
-    if (req.query.sort === 'upvotes') {
-      if (req.query.order === 'desc') {
-        recipes.sort((recipe1, recipe2) => recipe1.upvotes > recipe2.upvotes);
-      } else {
-        recipes.sort((recipe1, recipe2) => recipe1.upvotes < recipe2.upvotes);
-      }
+  static addRecipe(req, res) {
+    const errors = [];
+    const {
+      name, ingredients, description, category, directions, imageurl,
+    } = req.body;
+    if (!name || typeof name !== 'string') {
+      errors.push('Name of recipe is required');
     }
-    return res.status(200).json({
-      recipes
-    });
-  }
-  /**
-   * @returns {Object} createRecipes
-   * @param {*} req
-   * @param {*} res
-   */
-  static createRecipes(req, res) {
-    const validate = validator(req.body);
-    const recipe = Object.assign({}, req.body, {
-      upvotes: 0,
-      downvotes: 0,
-      favorited: 0,
-      views: 0,
-    });
-    if (validate.valid) {
-      recipes.push(recipe);
-      return res.status(201).json({
-        feed: recipes[recipes.length - 1],
-        message: 'success',
-        error: false
+    if (!ingredients || typeof ingredients !== 'string') {
+      errors.push('Ingredient(s) required');
+    }
+    if (!description || typeof description !== 'string') {
+      errors.push('Description(s) required');
+    }
+    if (!category || typeof category !== 'string') {
+      errors.push('Category(s) required');
+    }
+    if (!directions || typeof directions !== 'string') {
+      errors.push('Direction(s) required');
+    }
+    if (!imageurl) {
+      errors.push('Image required');
+    }
+    if (errors.length > 0) {
+      return res.status(400).send({
+        message: errors
       });
     }
-    return res.status(400).send({ status: false, message: validate.message });
-
-
-    // if (validate.valid) {
-    //   recipes.push({
-    //     id: recipes.length + 1,
-    //     name: req.body.name,
-    //     upvotes: 0,
-    //     downvotes: 0,
-    //     favorited: 0,
-    //     views: 0,
-    //     description: req.body.description,
-    //     image: req.body.image,
-    //     ingredients: req.body.ingredients,
-    //     directions: req.body.directions,
-    //   });
-    // return res.status(200).json({
-    //   feed: recipes[recipes.length - 1],
-    //   message: 'success',
-    //   error: false
-    // });
-  }
-  /**
-   * @returns {Object} updateRecipes
-   * @param {*} req
-   * @param {*} res
-   */
-  static modifyRecipes(req, res) {
-    for (let i = 0; i < recipes.length; i += 1) {
-      if (recipes[i].id === parseInt(req.params.recipeId, 10)) {
-        recipes[i].name = req.body.name;
-        recipes[i].description = req.body.description;
-        recipes[i].image = req.body.image;
-        recipes[i].ingredients = req.body.ingredients;
-        recipes[i].directions = req.body.directions;
-        return res.status(200).json({
-          recipes: recipes[i],
-          message: 'success',
-          error: false
+    console.log(req.userId);
+    return recipes
+      .create({
+        name,
+        ingredients,
+        description,
+        category,
+        directions,
+        imageurl,
+        userId: req.userId
+      })
+      .then(addRecipe => res.status(201).send(addRecipe))
+      .catch((error) => {
+        console.log(error);
+        return res.status(500).send({
+          message: 'Some error occured'
         });
-      }
-    }
-    return res.status(404).json({
-      message: 'recipe not found',
-      error: true
-    });
+      });
   }
   /**
-   * @returns {object} removeRecipes
-   * @param {*} req
-   * @param {*} res
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {json} modifies the recipe
+   * @memberof RecipeController
    */
-  static removeRecipes(req, res) {
-    for (let i = 0; i < recipes.length; i += 1) {
-      if (recipes[i].id === parseInt(req.params.recipeId, 10)) {
-        recipes.splice(i, 1);
-        return res.status(200).json({
-          message: 'success',
-          error: false
-        });
-      }
-    }
-    return res.status(404).json({
-      message: 'recipe not found',
-      error: true
-    });
+  static modifyRecipe(req, res) {
+    const {
+      name, ingredients, description, category, directions, imageurl
+    } = req.body;
+    console.log(parseInt(req.params.recipeId, 10), '*********************************');
+    return recipes
+      .findById(parseInt(req.params.recipeId, 10))
+      .then((recipeFound) => {
+        console.log(recipeFound);
+        if (!recipeFound) {
+          return res.status(404).send({
+            message: 'Recipe not Found'
+          });
+        }
+        return recipeFound
+          .update({
+            name,
+            ingredients,
+            description,
+            category,
+            directions,
+            imageurl
+          })
+          .then(updatedRecipe => res.status(200).send({
+            message: 'Recipe updated!!',
+            updatedRecipe
+          }))
+          .catch(error => res.status(400).send(error));
+      })
+      .catch(error => console.log(error));
   }
   /**
-   * @returns {obj} retrieveRecipes
-   * @param {*} req
-   * @param {*} res
+     * @returns {Object} removeRecipe
+     * @param {Object} req
+     * @param {Object} res
+     */
+  static removeRecipe(req, res) {
+    return recipes
+      .findById(parseInt(req.params.recipeId, 10))
+      .then((recipeFound) => {
+        if (!recipeFound) {
+          return res.status(404).send({
+            message: 'Recipe not Found'
+          });
+        }
+        if (req.userId !== recipeFound.userId) {
+          return res.status(401).send({
+            message: 'You do not have the permission to do that!'
+          });
+        }
+        return recipeFound
+          .destroy()
+          .then(() => res.status(200).send({
+            message: 'Recipe deleted'
+          }))
+          .catch(err => res.status(400).send(err));
+      })
+      .catch(err => res.status(500).send(err));
+  }
+  /**
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {json} get al recipes
+   * @memberof RecipeController
    */
-  static retrieveRecipes(req, res) {
-    for (let i = 0; i < recipes.length; i += 1) {
-      if (recipes[i].id === parseInt(req.params.recipeId, 10)) {
-        return res.status(200).json({
-          recipes: recipes[i],
-          message: 'success',
-          error: false
-        });
-      }
+  static getAll(req, res) {
+    if (req.query.order || req.query.sort) {
+      return recipes
+        .findAll({
+          order: [
+            ['upVotes', 'DESC']
+          ]
+        })
+        .then(sortedRecipes => res.status(200).send(sortedRecipes))
+        .catch(() => res.status(400).send({
+          message: 'Error Occured'
+        }));
     }
-    return res.status(404).json({
-      message: 'recipe not found',
-      error: true
-    });
+    return recipes
+      .all()
+      .then(allrecipes => res.status(200).send(allrecipes))
+      .catch(error => res.status(400).send(error));
   }
   /**
-   * @returns {obj} addReview
-   * @param {*} req
-   * @param {*} res
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {Object} add reviews
+   * @memberof RecipeController
    */
   static addReview(req, res) {
-    for (let i = 0; i < recipes.length; i += 1) {
-      if (recipes[i].id === parseInt(req.params.recipeId, 10)) {
-        console.log(recipes);
-        recipes[i].reviews.push(req.body.reviews);
-        return res.status(200).json({
-          recipes: recipes[i],
-          message: 'success',
-          error: false
-        });
-      }
-    }
-    return res.status(404).json({
-      message: 'recipe not found',
-      error: true
-    });
+    return recipes
+      .findById(parseInt(req.params.recipeId, 10))
+      .then((recipeFound) => {
+        if (!recipeFound) {
+          return res.status(404).send({
+            message: 'Recipe not found'
+          });
+        }
+        return reviews
+          .create({
+            content: req.body.content,
+            recipeId: req.params.recipeId,
+            userId: req.userId,
+          })
+          .then(createdReview => res.status(201).send({
+            message: 'Review Added successfully',
+            data: createdReview
+          }))
+          .catch(error => res.status(400).send(error));
+      })
+      .catch(error => res.status(500).send(error));
   }
+  /**
+   * @static
+   * @param {Object} req
+   * @param {anObjecty} res
+   * @returns {Object} getHighVote
+   * @memberof RecipeController
+   */
 }
 
-export default Recipe;
-
+export default RecipeController;

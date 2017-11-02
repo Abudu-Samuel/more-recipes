@@ -2,15 +2,33 @@
 
 module.exports = (sequelize, DataTypes) => {
   const vote = sequelize.define('vote', {
-    upvote: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 0
+      onDelete: 'CASCADE',
+      references: {
+        model: 'users',
+        key: 'id',
+        as: 'userId'
+      }
     },
-    downvote: {
+    recipeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 0
+      onDelete: 'CASCADE',
+      references: {
+        model: 'recipes',
+        key: 'id',
+        as: 'recipeId'
+      }
+    },
+    upvotes: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    downvotes: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     }
   });
   vote.associate = (models) => {
