@@ -65,6 +65,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'recipeId',
       as: 'votes'
     });
+    recipe.hasMany(models.view, {
+      foreignKey: 'recipeId',
+      as: 'view'
+    });
     recipe.hasMany(models.favorite, {
       foreignKey: 'recipeId',
       as: 'favorites'

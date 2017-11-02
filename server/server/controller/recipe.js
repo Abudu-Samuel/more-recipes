@@ -12,20 +12,51 @@ class RecipeController {
    * @param {Object} res
    */
   static addRecipe(req, res) {
+    const errors = [];
     const {
-      name, ingredients, description, directions, imageurl,
+      name, ingredients, description, category, directions, imageurl,
     } = req.body;
+    if (!name || typeof name !== 'string') {
+      errors.push('Name of recipe is required');
+    }
+    if (!ingredients || typeof ingredients !== 'string') {
+      errors.push('Ingredient(s) required');
+    }
+    if (!description || typeof description !== 'string') {
+      errors.push('Description(s) required');
+    }
+    if (!category || typeof category !== 'string') {
+      errors.push('Category(s) required');
+    }
+    if (!directions || typeof directions !== 'string') {
+      errors.push('Direction(s) required');
+    }
+    if (!imageurl) {
+      errors.push('Image required');
+    }
+    if (errors.length > 0) {
+      return res.status(400).send({
+        message: errors
+      });
+    }
+    console.log(req.userId);
     return recipes
       .create({
         name,
         ingredients,
         description,
+        category,
         directions,
         imageurl,
         userId: req.userId
       })
       .then(addRecipe => res.status(201).send(addRecipe))
-      .catch(error => res.status(400).send(error));
+      .catch((error) => {
+        console.log(error);
+        return res.status(500).send({
+          message: 'Some error occured'
+        });
+      });
   }
   /**
    * @static
@@ -36,8 +67,9 @@ class RecipeController {
    */
   static modifyRecipe(req, res) {
     const {
-      name, ingredients, description, directions, imageurl
+      name, ingredients, description, category, directions, imageurl
     } = req.body;
+    console.log(parseInt(req.params.recipeId, 10), '*********************************');
     return recipes
       .findById(parseInt(req.params.recipeId, 10))
       .then((recipeFound) => {
@@ -52,10 +84,14 @@ class RecipeController {
             name,
             ingredients,
             description,
+            category,
             directions,
             imageurl
           })
-          .then(updatedRecipe => res.status(200).send(updatedRecipe))
+          .then(updatedRecipe => res.status(200).send({
+            message: 'Recipe updated!!',
+            updatedRecipe
+          }))
           .catch(error => res.status(400).send(error));
       })
       .catch(error => console.log(error));
@@ -125,6 +161,24 @@ class RecipeController {
           .catch(error => res.status(400).send(error));
       })
       .catch(error => res.status(500).send(error));
+  }
+  /**
+   * @static
+   * @param {Object} req
+   * @param {anObjecty} res
+   * @returns {Object} getHighVote
+   * @memberof RecipeController
+   */
+  static getHighVote(req, res) {
+    if (req.query.order || req.query.sort) {
+      return recipes
+        .findAll({
+          order: [
+            ['upVotes', 'DESC']
+          ]
+        })
+        
+    }
   }
 }
 

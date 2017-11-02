@@ -22,11 +22,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'recipeId'
       }
     },
-    upvote: {
+    upvotes: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    downvote: {
+    downvotes: {
       type: DataTypes.INTEGER,
       allowNull: false,
     }

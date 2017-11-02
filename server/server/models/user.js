@@ -1,6 +1,12 @@
 
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('user', {
+    firstName: {
+      type: DataTypes.STRING
+    },
+    lastName: {
+      type: DataTypes.STRING
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -26,12 +32,6 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    firstName: {
-      type: DataTypes.STRING
-    },
-    lastName: {
-      type: DataTypes.STRING
-    }
   });
   user.associate = (models) => {
     user.hasMany(models.recipe, {
@@ -45,6 +45,10 @@ module.exports = (sequelize, DataTypes) => {
     user.hasMany(models.vote, {
       foreignKey: 'userId',
       as: 'votes'
+    });
+    user.hasMany(models.view, {
+      foreignKey: 'userId',
+      as: 'view'
     });
     user.hasMany(models.favorite, {
       foreignKey: 'userId',
