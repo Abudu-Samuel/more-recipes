@@ -18,19 +18,19 @@ class UserController {
       username, email, password, firstName, lastName
     } = req.body;
 
-    if (!username) {
+    if (!username || typeof username !== 'string') {
       errors.push('Username is required');
     }
-    if (!email) {
+    if (!email || typeof email !== 'string') {
       errors.push('Email required');
     }
-    if (!password) {
+    if (!password || typeof password !== 'string') {
       errors.push('password is required');
     }
-    if (!firstName) {
+    if (!firstName || typeof firstName !== 'string') {
       errors.push('first name is required');
     }
-    if (!lastName) {
+    if (!lastName || typeof lastName !== 'string') {
       errors.push('last name is required');
     }
     if (errors.length > 0) {
@@ -67,10 +67,10 @@ class UserController {
     const errors = [];
     const { email, password } = req.body;
 
-    if (!email) {
+    if (!email || typeof email !== 'string') {
       errors.push('Email is required');
     }
-    if (!password) {
+    if (!password || typeof password !== 'string') {
       errors.push('password is required');
     }
     if (errors.length > 0) {

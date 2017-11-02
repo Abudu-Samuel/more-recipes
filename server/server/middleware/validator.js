@@ -7,9 +7,11 @@ const validation = {
    * @returns {Object} recipeId
    */
   recipeId(req, res, next) {
-    const { recipeId } = req.params.recipeId;
+    console.log(req.params.recipeId, '===================================');
+    const { recipeId } = req.params;
 
-    if (Number.isNaN(recipeId)) {
+    if (parseInt(recipeId, 10) === 'NaN') {
+      console.log('hello ****====================*************()()())()(()()(');
       return res.status(400).json({
         message: 'Parameter must be a number!'
       });
