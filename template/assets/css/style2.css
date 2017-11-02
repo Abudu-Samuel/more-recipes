@@ -20,7 +20,7 @@ html {
 	color: #fff;
 }
 .navbar.navbar-expand-lg.navbar-light.bg-light a.navbar-brand:hover {
-	color: #ccc;
+	color: #fff;
 }
 a.navbar-brand {
 	/* border: 1px solid #ccc; */
@@ -28,7 +28,7 @@ a.navbar-brand {
 	border-radius: 0.2rem;
 }
 .nav-item:hover {
-	background: #ccc;
+	background: #fff;
 }
 .nav-item {
 	padding: 0 1rem;
@@ -96,7 +96,7 @@ a.navbar-brand {
 }*/
 
 body {
-    background-image: url("../images/3-col/pic2.jpg");
+    background-image: url("../images/3-col/image.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

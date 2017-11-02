@@ -14,7 +14,7 @@ class RecipeController {
   static addRecipe(req, res) {
     const errors = [];
     const {
-      name, ingredients, upVotes, description, category, directions, imageurl,
+      name, ingredients, description, category, directions, imageurl,
     } = req.body;
     if (!name || typeof name !== 'string') {
       errors.push('Name of recipe is required');
@@ -47,7 +47,6 @@ class RecipeController {
         description,
         category,
         directions,
-        upVotes,
         imageurl,
         userId: req.userId
       })
@@ -109,6 +108,11 @@ class RecipeController {
         if (!recipeFound) {
           return res.status(404).send({
             message: 'Recipe not Found'
+          });
+        }
+        if (req.userId !== recipeFound.userId) {
+          return res.status(401).send({
+            message: 'You do not have the permission to do that!'
           });
         }
         return recipeFound

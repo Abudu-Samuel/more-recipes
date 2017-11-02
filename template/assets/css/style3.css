@@ -40,7 +40,7 @@ html {
 	color: #fff;
 }
 .navbar.navbar-expand-lg.navbar-light.bg-light a.navbar-brand:hover {
-	color: #ccc;
+	color: #fff;
 }
 a.navbar-brand {
 	/* border: 1px solid #ccc; */
@@ -48,7 +48,7 @@ a.navbar-brand {
 	border-radius: 0.2rem;
 }
 .nav-item:hover {
-	background: #ccc;
+	background: #fff;
 }
 .nav-item {
 	padding: 0 1rem;
@@ -78,17 +78,6 @@ a:hover {
     margin: auto;
    /* width: 30rem*/
 }
-/*.left {
-	margin-left: 89px
-}*/
-/*.footer {
-	background: #1275FB;
-	color: #fff;
-	padding: 1rem 0;
-}
-.social ul li:hover {
-	color: #F9F461;
-}*/
 .space {
 	padding-top: 20rem;
 }

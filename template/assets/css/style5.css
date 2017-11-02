@@ -35,7 +35,7 @@ html {
 	color: #fff;
 }
 .navbar.navbar-expand-lg.navbar-light.bg-light a.navbar-brand:hover {
-	color: #ccc;
+	color: #fff;
 }
 a.navbar-brand {
 	/* border: 1px solid #ccc; */
@@ -43,7 +43,7 @@ a.navbar-brand {
 	border-radius: 0.2rem;
 }
 .nav-item:hover {
-	background: #ccc;
+	background: #fff;
 }
 .nav-item {
 	padding: 0 1rem;
@@ -75,4 +75,21 @@ a.navbar-brand {
 .middle {
 	display: block;
 	margin: auto;
+}
+
+.fa-heart {
+	color: red;
+	border-color: red;
+	background: #fff
+}
+.fa-heart:hover {
+	color: white;
+	border-color: red;
+	background: #fff
+}
+.btn.btn-primary.mb-4 {
+	background: #fff
+}
+.btn.btn-primary.mb-4:hover {
+	background: red
 }

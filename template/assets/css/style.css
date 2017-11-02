@@ -43,7 +43,7 @@ img {
 	color: #fff;
 }
 .navbar.navbar-expand-lg.navbar-light.bg-light a.navbar-brand:hover {
-	color: #ccc;
+	color: #fff;
 }
 a.navbar-brand {
 	/* border: 1px solid #ccc; */
@@ -51,7 +51,7 @@ a.navbar-brand {
 	border-radius: 0.2rem;
 }
 .nav-item:hover {
-	background: #ccc;
+	background: #fff;
 }
 .nav-item {
 	padding: 0 1rem;
@@ -81,6 +81,7 @@ h1, h2, h3, h4, h6, .h1, .h2, .h3, .h4, .h6 {
 }
 .footer {
 	background: #1275FB;
+	/* position: fixed; */
 	color: #fff;
 	padding: 1rem 0;
 }
