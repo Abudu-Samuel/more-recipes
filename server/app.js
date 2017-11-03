@@ -4,6 +4,12 @@ import logger from 'morgan';
 // import expressValidator from 'express-validator';
 import routes from './server/routes/index';
 
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+console.log(process.env.Node_ENV)
+
 
 const app = express();
 app.use(logger('dev'));

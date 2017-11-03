@@ -22,9 +22,15 @@ var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var app = (0, _express2.default)();
+var dotenv = require('dotenv');
 // import expressValidator from 'express-validator';
 
+
+dotenv.config();
+
+console.log(process.env.Node_ENV);
+
+var app = (0, _express2.default)();
 app.use((0, _morgan2.default)('dev'));
 app.use(_bodyParser2.default.json());
 app.use(_bodyParser2.default.urlencoded({ extended: false }));
