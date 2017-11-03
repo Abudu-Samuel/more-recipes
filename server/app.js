@@ -8,9 +8,6 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-console.log(process.env.Node_ENV)
-
-
 const app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());

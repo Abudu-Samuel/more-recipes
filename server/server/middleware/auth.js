@@ -1,14 +1,24 @@
 import jwt from 'jsonwebtoken';
+
+require('dotenv').config();
 /**
  * @returns {Object} ensureUser
  * @param {Object} req
  * @param {Object} res
  * @param {Object} next
  */
-const ensureUser = (req, res, next) => {
+const key = process.env.SECRET_KEY;
+
+/**
+ * @param {any} req
+ * @param {any} res
+ * @param {any} next
+ * @returns {Objet} authenticate
+ */
+const authenticate = (req, res, next) => {
   let verified;
   try {
-    verified = jwt.verify(req.token, 'Test');
+    verified = jwt.verify(req.token, key);
   } catch (error) {
     const err = res.status(400).send({ error });
     return next(err);
@@ -20,4 +30,4 @@ const ensureUser = (req, res, next) => {
   return next();
 };
 
-export default ensureUser;
+export default authenticate;
