@@ -35,7 +35,7 @@
     "nyc": "^11.2.1",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.2.2",
+    "sequelize": "^4.4.2",
     "sequelize-cli": "^2.8.0",
     "supertest": "^3.0.0"
   },
