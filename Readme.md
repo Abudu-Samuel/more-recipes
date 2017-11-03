@@ -1,5 +1,5 @@
 
-https://travis-ci.org/Abudu-Samuel/more-recipes.svg?branch=develop
+[![Build Status](https://travis-ci.org/Abudu-Samuel/more-recipes.svg?branch=master)](https://travis-ci.org/Abudu-Samuel/more-recipes)
 
 # MORE-RECIPES
 More-Recipes provides a platform for users to share the awesome and exciting  recipe ideas they 
